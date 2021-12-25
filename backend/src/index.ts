@@ -1,12 +1,12 @@
-import express from "express";
+import * as express from "express";
+import * as path from "path";
 
 const { default: ParseServer, ParseGraphQLServer } = require("parse-server");
 const ParseDashboard = require("parse-dashboard");
 const FSFilesAdapter = require("@parse/fs-files-adapter");
 const gql = require("graphql-tag");
 const fs = require("fs");
-const customSchema = fs.readFileSync(`${__dirname}/schema.graphql`);
-
+const customSchema = fs.readFileSync(path.resolve(__dirname, "../src/schema.graphql"));
 // parse .env file
 require("dotenv-flow").config({
     path: `${__dirname}/../../`
@@ -36,14 +36,11 @@ const parseServer = new ParseServer({
     databaseURI: MONGODB_URL,
     serverURL: SERVER_URL,
     publicServerURL: SERVER_URL,
-    cloud: `${__dirname}/../../backend/build/cloud/main.js`,
+    cloud: path.resolve(__dirname, "../build/cloud/main.js"),
     filesAdapter: new FSFilesAdapter({
         filesSubDirectory: FILES_SUBDIRECTORY,
         encryptionKey: ENCRYPTION_KEY
     }),
-    auth: {
-        anonymous: "19d165c4-cf52-4408-93c1-63c46f118d9c"
-    },
     allowClientClassCreation: false,
     enableAnonymousUsers: false
 });
