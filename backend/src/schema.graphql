@@ -1,0 +1,4 @@
+# schema.graphql
+extend type Mutation {
+    hasVPN: String! @resolve
+}
