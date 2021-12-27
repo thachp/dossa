@@ -67,16 +67,13 @@ const customEnglishMessages: TranslationMessages = {
                 stateAbbr: "State"
             },
             filters: {
-                last_visited: "Last visited",
-                today: "Today",
-                this_week: "This week",
-                last_week: "Last week",
-                this_month: "This month",
-                last_month: "Last month",
-                earlier: "Earlier",
-                has_ordered: "Has ordered",
-                has_newsletter: "Has newsletter",
-                group: "Segment"
+                incidentTypes: "Corruptions",
+                zero_10: "Up to 10 cases",
+                ten_25: "10 to 25 cases",
+                twentyfive_50: "25 to 50 cases",
+                fifty_more: "50 & above cases",
+                cases_count: "Cases Count",
+                has_people: "Has people"
             },
             fieldGroups: {
                 identity: "Identity",

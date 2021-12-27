@@ -1,10 +1,9 @@
-import CategoryIcon from "@material-ui/icons/Bookmark";
+import InvoiceIcon from "@material-ui/icons/LibraryBooks";
 
-import CategoryEdit from "./Edit.incidenttype";
-import CategoryList from "./List.incidenttype";
+import IncidentTypeList from "./List.incidenttype";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    list: CategoryList,
-    edit: CategoryEdit,
-    icon: CategoryIcon,
+    list: IncidentTypeList,
+    icon: InvoiceIcon
 };

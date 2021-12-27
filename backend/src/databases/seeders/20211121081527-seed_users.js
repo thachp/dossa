@@ -5,14 +5,23 @@ wireguard = require("../wireguard");
  * @param {Parse} Parse
  */
 exports.run = async Parse => {
-    function addUserToRoleNamed(users, roleName) {
-        var query = new Parse.Query(Parse.Role);
+    const addUserToRoleNamed = async (users, roleName) => {
+        // Get the role
+        const query = new Parse.Query(Parse.Role);
         query.equalTo("name", roleName);
-        return query.first().then(function(role) {
-            role.getUsers().add(users);
-            return role.save(null, { useMasterKey: true });
-        });
-    }
+
+        // get the role
+        const role = await query.first();
+
+        // add the users to the role
+        for (let user of users) {
+            role.getUsers({
+                useMasterKey: true
+            }).add(user);
+        }
+
+        await role.save({}, { useMasterKey: true });
+    };
 
     var query = new Parse.Query(Parse.User);
     var result = await query.first({ useMasterKey: true });
@@ -24,29 +33,37 @@ exports.run = async Parse => {
     for (let i = 0; i < 50; i++) {
         let user = new Parse.User();
         let keypair = wireguard.generateKeypair();
-        user.set("username", i === 0 ? "administrator" : keypair.publicKey);
-        user.set("password", i === 0 ? "1234" : keypair.privateKey);
+
+        if (i === 0) {
+            user.set("username", "administrator");
+        } else if (i === 1) {
+            user.set("username", "analyst");
+        } else if (i === 30) {
+            user.set("username", "activist");
+        } else {
+            user.set("username", keypair.publicKey);
+        }
+
+        user.set("password", [0, 1, 30].includes(i) ? "1234" : keypair.privateKey);
         await user.signUp();
     }
 
     const userquery = new Parse.Query(Parse.User);
-    let results = await userquery
+    const administrator = await userquery
         .skip(0)
         .limit(1)
-        .find();
+        .first();
 
-    addUserToRoleNamed(results, "Administrator");
+    if (administrator) {
+        await addUserToRoleNamed([administrator], "admin");
+    }
+    const analystsQuery = userquery.skip(1).limit(25);
+    const analysts = await analystsQuery.find();
 
-    results = await userquery
-        .skip(1)
-        .limit(25)
-        .find();
+    await addUserToRoleNamed(analysts, "analyst");
 
-    addUserToRoleNamed(results, "Analyst");
+    const activistsQuery = userquery.skip(25).limit(25);
+    const activists = await activistsQuery.find();
 
-    results = await userquery
-        .skip(25)
-        .limit(25)
-        .find();
-    addUserToRoleNamed(results, "Activist");
+    await addUserToRoleNamed(activists, "activist");
 };

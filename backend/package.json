@@ -9,8 +9,10 @@
     "build": "tsc"
   },
   "dependencies": {
+    "country-data-list": "^1.2.1",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.2",
+    "faker": "^5.5.3",
     "graphql-tag": "^2.12.6",
     "parse-dashboard": "^3.2.1",
     "parse-server": "^4.10.4"

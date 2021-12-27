@@ -26,7 +26,7 @@ exports.run = async Parse => {
             vatID: faker.datatype.uuid(),
             taxID: faker.datatype.uuid(),
             email: faker.internet.email(),
-            description: faker.company.catchPhrase()
+            description: faker.lorem.sentences()
         };
     });
 

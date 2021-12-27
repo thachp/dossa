@@ -1,33 +1,28 @@
-import * as React from "react";
-import { Datagrid, DateField, DateInput, List, ListProps, NumberField, ReferenceField, TextField } from "react-admin";
+import { Datagrid, List, ListProps, Pagination, PaginationProps, TextField } from "react-admin";
 
-import ShowIncident from "./Show.institution";
+import AsideInstitution from "./Aside.institution";
+import ShowInstitution from "./Show.institution";
 
-const listFilters = [
-    <DateInput source="date_gte" alwaysOn />,
-    <DateInput source="date_lte" alwaysOn />,
-];
-
-
+const InstitutionPagination = (props: PaginationProps) => (
+    <Pagination rowsPerPageOptions={[10, 20, 50, 100]} {...props} />
+);
 
 const ListInstitution = (props: ListProps) => {
     return (
         <List
             {...props}
-            filters={listFilters}
-            perPage={25}
-            sort={{ field: 'date', order: 'desc' }}
+            sort={{ field: "name", order: "ASC" }}
+            syncWithLocation
+            bulkActionButtons={false}
+            pagination={<InstitutionPagination />}
+            perPage={20}
+            aside={<AsideInstitution />}
         >
-            <Datagrid rowClick="expand" expand={<ShowIncident />}>
-                <TextField source="id" />
-                <DateField source="date" />
-                <ReferenceField source="command_id" reference="commands">
-                    <TextField source="reference" />
-                </ReferenceField>
-                <NumberField source="total_ex_taxes" />
-                <NumberField source="delivery_fees" />
-                <NumberField source="taxes" />
-                <NumberField source="total" />
+            <Datagrid rowClick="show" expand={ShowInstitution}>
+                <TextField source="name" />
+                <TextField source="description" />
+                <TextField source="email" />
+                <TextField source="telephone" />
             </Datagrid>
         </List>
     );

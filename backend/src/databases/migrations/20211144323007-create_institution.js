@@ -1,4 +1,4 @@
-const { INSTITUTION, COUNTRY, HASHTAG, PERSON, CASE, USER } = require("../entities");
+const { INSTITUTION, COUNTRY, HASHTAG, PERSON, CASE, USER, INCIDENT_TYPE } = require("../entities");
 
 /**
  *
@@ -29,6 +29,7 @@ exports.up = async Parse => {
         .addRelation("people", PERSON)
         .addRelation("hashtags", HASHTAG)
         .addRelation("countries", COUNTRY)
+        .addRelation("incidentTypes", INCIDENT_TYPE)
         .addRelation("cases", CASE)
         .addIndex("institutionNameIndex", {
             name: 1

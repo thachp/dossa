@@ -4,14 +4,21 @@
     "private": true,
     "proxy": "http://localhost:1337",
     "dependencies": {
+        "@apollo/client": "^3.5.6",
         "@material-ui/core": "^4.12.1",
         "@material-ui/icons": "^4.11.2",
-        "@types/apollo-upload-client": "^14.1.0",
         "apollo-upload-client": "^17.0.0",
+        "date-fns": "^2.27.0",
+        "flat": "^5.0.2",
         "graphql": "^16.2.0",
         "graphql-tag": "^2.12.6",
+        "lodash.capitalize": "^4.2.1",
+        "lodash.get": "^4.4.2",
+        "lodash.isempty": "^4.4.0",
+        "lodash.merge": "^4.6.2",
+        "mock-apollo-client": "^1.2.0",
+        "pluralize": "^8.0.0",
         "proxy-polyfill": "^0.3.0",
-        "ra-data-graphql": "^3.19.1",
         "ra-i18n-polyglot": "^3.9.0",
         "ra-input-rich-text": "^3.9.0",
         "ra-language-english": "^3.9.0",
@@ -24,7 +31,7 @@
         "react-redux": "^7.1.0",
         "react-router": "^5.1.0",
         "react-router-dom": "5.3.0",
-        "react-scripts": "^4.0.3",
+        "react-scripts": "^5.0.0",
         "recharts": "^1.8.5",
         "redux-saga": "^1.0.0"
     },
@@ -32,7 +39,8 @@
         "analyze": "source-map-explorer 'build/static/js/*.js'",
         "start": "react-scripts start",
         "build": "node ./build.js",
-        "eject": "react-scripts test"
+        "test": "react-scripts test",
+        "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
     },
     "eslintConfig": {
         "extends": [
@@ -48,11 +56,19 @@
         "not op_mini all"
     ],
     "devDependencies": {
+        "@testing-library/react": "^12.1.2",
+        "@types/apollo-upload-client": "^14.1.0",
         "@types/classnames": "^2.2.9",
         "@types/fetch-mock": "^7.3.2",
+        "@types/flat": "^5.0.2",
         "@types/inflection": "^1.5.28",
         "@types/jest": "^26.0.19",
+        "@types/lodash.capitalize": "^4.2.6",
+        "@types/lodash.get": "^4.4.6",
+        "@types/lodash.isempty": "^4.4.6",
+        "@types/lodash.merge": "^4.6.6",
         "@types/node": "^12.12.14",
+        "@types/pluralize": "^0.0.29",
         "@types/query-string": "5.1.0",
         "@types/react": "^17.0.20",
         "@types/react-dom": "^17.0.9",

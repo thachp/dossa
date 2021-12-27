@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { AuthProvider } from "react-admin";
 
-import gclient from "./graphql.config";
+import gclient from "../common/graphql.config";
 
 interface AuthSession {
     sessionToken: string;
@@ -28,7 +28,7 @@ const authProvider: AuthProvider = {
         // fetch user and set token
         const doLogin = async () => {
             const { data } = await gclient.mutate({
-                mutation: LOGIN,
+                mutation: LOGIN as any,
                 variables: { input: { username, password } }
             });
 
