@@ -3,21 +3,11 @@ import { Datagrid, DateField, DateInput, List, ListProps, NumberField, Reference
 
 import ShowIncident from "./Show.incident";
 
-const listFilters = [
-    <DateInput source="date_gte" alwaysOn />,
-    <DateInput source="date_lte" alwaysOn />,
-];
-
-
+const listFilters = [<DateInput source="date_gte" alwaysOn />, <DateInput source="date_lte" alwaysOn />];
 
 const ListIncident = (props: ListProps) => {
     return (
-        <List
-            {...props}
-            filters={listFilters}
-            perPage={25}
-            sort={{ field: 'date', order: 'desc' }}
-        >
+        <List {...props} filters={listFilters} perPage={25} sort={{ field: "date", order: "desc" }}>
             <Datagrid rowClick="expand" expand={<ShowIncident />}>
                 <TextField source="id" />
                 <DateField source="date" />

@@ -22,17 +22,6 @@ const Menu = ({ dense = false }: MenuProps) => {
             })}
         >
             <DashboardMenuItem />
-            <MenuItemLink
-                to={{
-                    pathname: "/cases",
-                    state: { _scrollToTop: true }
-                }}
-                primaryText={translate(`resources.cases.name`, {
-                    smart_count: 2
-                })}
-                leftIcon={<cases.icon />}
-                dense={dense}
-            />
 
             <MenuItemLink
                 to={{
@@ -43,6 +32,30 @@ const Menu = ({ dense = false }: MenuProps) => {
                     smart_count: 2
                 })}
                 leftIcon={<institutions.icon />}
+                dense={dense}
+            />
+
+            <MenuItemLink
+                to={{
+                    pathname: "/incidents",
+                    state: { _scrollToTop: true }
+                }}
+                primaryText={translate(`resources.incidents.name`, {
+                    smart_count: 2
+                })}
+                leftIcon={<cases.icon />}
+                dense={dense}
+            />
+
+            <MenuItemLink
+                to={{
+                    pathname: "/cases",
+                    state: { _scrollToTop: true }
+                }}
+                primaryText={translate(`resources.cases.name`, {
+                    smart_count: 2
+                })}
+                leftIcon={<cases.icon />}
                 dense={dense}
             />
 

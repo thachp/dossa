@@ -90,6 +90,11 @@ const customEnglishMessages: TranslationMessages = {
                 password_mismatch: "The password confirmation is not the same as the password."
             }
         },
+
+        incidents: {
+            name: "Incident |||| Incidents"
+        },
+
         cases: {
             name: "Case |||| Cases",
             amount: "1 order |||| %{smart_count} orders",

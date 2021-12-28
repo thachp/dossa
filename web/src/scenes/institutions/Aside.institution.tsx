@@ -21,7 +21,7 @@ const Card = withStyles((theme) => ({
 const Aside = () => {
     const { data, ids } = useGetList<IncidentType>(
         "incidentTypes",
-        { page: 1, perPage: 100 },
+        { page: 1, perPage: 10 },
         { field: "name", order: "ASC" },
         {}
     );
