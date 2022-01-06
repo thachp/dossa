@@ -3,7 +3,14 @@ import capitalize from "lodash.capitalize";
 import pluralize, { singular } from "pluralize";
 
 import gclient from "../../common/graphql.config";
-import { buildGetListProvider, buildQueryWhere, getGqlResource, RaFetchResources } from "../data.provider";
+import {
+    buildGetListProvider,
+    buildQueryWhere,
+    decodeFieldName,
+    encodeFieldName,
+    getGqlResource,
+    RaFetchResources,
+} from "../data.provider";
 
 jest.mock("pluralize");
 jest.mock("lodash.capitalize");
@@ -78,6 +85,48 @@ describe("dataProvider", () => {
     });
 });
 
+describe("encodeFieldName", () => {
+    test("given object, expect to return base64 encoded string", () => {
+        // setup
+        const obj = {
+            incidentTypes: {
+                have: {
+                    id: {
+                        equalTo: "Hello world"
+                    }
+                }
+            }
+        };
+
+        // act
+        const results = encodeFieldName(obj);
+
+        // assert
+        expect(results).toEqual("incidentTypes.have.id.equalTo");
+    });
+});
+
+describe("decodeFieldName", () => {
+    test("given object, expect to return base64 encoded string", () => {
+        // setup
+        const obj = {
+            incidentTypes: {
+                have: {
+                    id: {
+                        equalTo: "Hello World"
+                    }
+                }
+            }
+        };
+
+        // act
+        const results = decodeFieldName("incidentTypes.have.id.equalTo", "Hello World");
+
+        // assert
+        expect(results).toEqual(obj);
+    });
+});
+
 describe("buildQueryWhere", () => {
     describe("Test succesful: valid filter", () => {
         test("give valid but empty filter, expect to return empty object", () => {
@@ -92,8 +141,9 @@ describe("buildQueryWhere", () => {
             // setup
             const filters = {
                 name: "bob",
-                email_matchesRegex: "Pru",
-                createdAt_greaterThan: new Date("2020-01-01")
+                email: "Pru",
+                "incidentTypes.have.id.equalTo": "Hello World",
+                createdAt: new Date("2020-01-01")
             };
 
             // act
@@ -101,16 +151,9 @@ describe("buildQueryWhere", () => {
 
             // assert
             expect(results).toEqual({
-                name: {
-                    equalTo: "bob"
-                },
-                email: {
-                    matchesRegex: "Pru",
-                    options: "i"
-                },
-                createdAt: {
-                    greaterThan: new Date("2020-01-01")
-                }
+                name: "bob",
+                email: "Pru",
+                createdAt: new Date("2020-01-01")
             });
         });
     });
@@ -152,7 +195,10 @@ describe("buildGetListProvider", () => {
 
             const params = {
                 filter: {
-                    name: "bob"
+                    name: {
+                        regexMatches: "bob",
+                        options: "i"
+                    }
                 },
                 sort: {
                     field: "name",
@@ -196,7 +242,8 @@ describe("buildGetListProvider", () => {
                 variables: {
                     where: {
                         name: {
-                            equalTo: "bob"
+                            regexMatches: "bob",
+                            options: "i"
                         }
                     },
                     order: `name_ASC`,

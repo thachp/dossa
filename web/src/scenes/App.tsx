@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import authProvider from "./auth.provider";
 import Login from "./auth/Login.auth";
 import dataProvider from "./data.provider";
+import incidents from "./incidents";
 import institutions from "./institutions";
 
 const i18nProvider = polyglotI18nProvider((locale) => {
@@ -28,7 +29,9 @@ const App = () => {
             disableTelemetry
         >
             <Resource name="institutions" {...institutions} />
-            <Resource name="incidentTypes" {...institutions} />
+            <Resource name="incidentTypes" />
+
+            <Resource name="incidents" {...incidents} />
         </Admin>
     );
 };

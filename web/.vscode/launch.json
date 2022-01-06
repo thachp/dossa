@@ -2,24 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug CRA Tests",
             "type": "node",
+            "name": "vscode-jest-tests",
             "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}\\jest",
             "args": [
                 "test",
                 "--runInBand",
-                "--no-cache",
                 "--watchAll=false"
-            ],
-            "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "env": {
-                "CI": "true"
-            },
-            "disableOptimisticBPs": true
+            ]
         }
     ]
 }

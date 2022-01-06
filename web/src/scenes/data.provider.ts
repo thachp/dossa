@@ -26,6 +26,30 @@ export interface RaFetchResources {
     [key: string]: RaFetchMethodType;
 }
 
+/**
+ * stringify object to string && encode to base64
+ * @param obj
+ * @returns
+ */
+export const encodeFieldName = (obj: object): string => {
+    let [firstKey] = Object.keys(flat.flatten(obj));
+    return firstKey;
+};
+
+/***
+ * decode from base64 & parse to object
+ */
+export const decodeFieldName = (flatten: string, value: any) => {
+    function strIsEmpty(str: string) {
+        return !str || str.length === 0;
+    }
+    if (strIsEmpty(flatten)) return {};
+    const _value = strIsEmpty(value) ? "" : value;
+    return flat.unflatten({
+        [flatten]: _value
+    });
+};
+
 export const getGqlResource = (pluralResource: string, resources: RaFetchResources) => {
     const _resource = pluralize.singular(pluralResource);
 
@@ -54,27 +78,9 @@ export const buildQueryWhere = (filters: any) => {
 
     let where: any = {};
 
-    // loop through filters
     for (const property in filters) {
-        let [field, operation] = property.split("_");
-
-        // if operation is not defined, assume equalTo
-        if (!operation) {
-            operation = "equalTo";
-        }
-
-        // assign operation to field
-        where[field] = {
-            [operation]: filters[property]
-        };
-
-        // if operation is matches regex, also assign options
-        if (operation === "matchesRegex") {
-            where[field] = {
-                ...where[field],
-                options: "i"
-            };
-        }
+        let filter: any = decodeFieldName(property, filters[property]);
+        where[property] = filter[property];
     } // end for
 
     return where;
@@ -115,7 +121,19 @@ export const buildGetListProvider = async (
         };
     }
 
-    const where = buildQueryWhere(params.filter);
+    let where = params.filter;
+
+    if (where.q) {
+        where = {
+            ...where,
+            name: {
+                matchesRegex: where.q,
+                options: "i"
+            }
+        };
+
+        delete where.q;
+    }
 
     const { data: dataResults } = await client.query({
         query: GET_LIST as any,
@@ -127,8 +145,6 @@ export const buildGetListProvider = async (
             skip
         }
     });
-
-    console.log("test", pluralResource);
 
     const { count: total, edges } = dataResults[pluralResource];
     return { total, data: edges.map((edge: { node: any }) => flat(edge.node)) };
