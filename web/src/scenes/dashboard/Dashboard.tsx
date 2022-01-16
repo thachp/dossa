@@ -1,7 +1,7 @@
 import Business from "@material-ui/icons/Business";
 import PeopleIcon from "@material-ui/icons/People";
 import { useEffect, useState } from "react";
-import { useDataProvider, useGetList, useTranslate, useVersion } from "react-admin";
+import { useGetList, useTranslate, useVersion } from "react-admin";
 
 import CardWithIcon from "../../components/cards/CardWithIcon";
 import { Incident, Institution } from "../../types";
@@ -30,12 +30,11 @@ const Dashboard = () => {
         institutionsCount: 326
     });
     const version = useVersion();
-    const dataProvider = useDataProvider();
     const translate = useTranslate();
 
     const { data: incidents } = useGetList<Incident>(
         "incidents",
-        { page: 1, perPage: 8 },
+        { page: 1, perPage: 9 },
         { field: "createdAt", order: "DESC" },
         {}
     );
