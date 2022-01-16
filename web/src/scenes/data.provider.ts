@@ -7,8 +7,9 @@ import pluralize from "pluralize";
 import { GetListParams } from "react-admin";
 
 import gclient from "../common/graphql.config";
-import IncidentType from "./incidentTypes/incidentTypes.constant";
+import Incident from "./incidents/incident.contant";
 import Institution from "./institutions/institution.contant";
+import IncidentType from "./reporting/incidentTypes.constant";
 
 export interface RaFetchMethodType {
     GET_LIST?: DocumentNode;
@@ -188,7 +189,8 @@ export const buildGraphQLProvider: any = (gclient: ApolloClient<any>, resourcesP
 export default async (type: string, resourceName: string, params: any) => {
     const resourcesProvider: RaFetchResources = {
         Institution,
-        IncidentType
+        IncidentType,
+        Incident
     };
 
     const dataProvider = buildGraphQLProvider(gclient, resourcesProvider);

@@ -6,13 +6,12 @@ import GroupIcon from "@material-ui/icons/Group";
 import inflection from "inflection";
 import { FilterList, FilterListItem, FilterLiveSearch, useGetList } from "react-admin";
 
-import { IncidentType } from "../incidentTypes/incidentTypes.interface";
+import { IncidentType } from "../reporting/incidentTypes.interface";
 
 const Card = withStyles((theme) => ({
     root: {
         [theme.breakpoints.up("sm")]: {
             order: -1,
-            width: "20em",
             marginRight: "1em"
         }
     }
@@ -30,7 +29,6 @@ const Aside = () => {
         <Card>
             <CardContent>
                 <FilterLiveSearch />
-
                 <FilterList label="resources.institutions.filters.incidentTypes" icon={<FilterBAndWIcon />}>
                     {ids &&
                         data &&

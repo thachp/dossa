@@ -2,11 +2,12 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import { Admin, Resource, useTranslate } from "react-admin";
 
 import englishMessages from "../common/i18n/en";
+import { darkTheme } from "../common/themes";
 import Layout from "../components/Layout";
 import authProvider from "./auth.provider";
 import Login from "./auth/Login.auth";
+import dashboard from "./dashboard";
 import dataProvider from "./data.provider";
-import incidents from "./incidents";
 import institutions from "./institutions";
 
 const i18nProvider = polyglotI18nProvider((locale) => {
@@ -21,17 +22,18 @@ const App = () => {
     return (
         <Admin
             title={translate("app.title")}
+            theme={darkTheme}
             dataProvider={dataProvider}
             authProvider={authProvider}
             loginPage={Login}
+            dashboard={dashboard.Dashboard}
             layout={Layout}
             i18nProvider={i18nProvider}
             disableTelemetry
         >
             <Resource name="institutions" {...institutions} />
             <Resource name="incidentTypes" />
-
-            <Resource name="incidents" {...incidents} />
+            <Resource name="incidents" />
         </Admin>
     );
 };

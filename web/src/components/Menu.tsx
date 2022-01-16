@@ -3,9 +3,8 @@ import classnames from "classnames";
 import { DashboardMenuItem, MenuItemLink, MenuProps, ReduxState, useTranslate } from "react-admin";
 import { useSelector } from "react-redux";
 
-import cases from "../scenes/cases";
+import dashboard from "../scenes/dashboard";
 import institutions from "../scenes/institutions";
-import reviews from "../scenes/reviews";
 import { AppState } from "../types";
 
 const Menu = ({ dense = false }: MenuProps) => {
@@ -37,37 +36,13 @@ const Menu = ({ dense = false }: MenuProps) => {
 
             <MenuItemLink
                 to={{
-                    pathname: "/incidents",
+                    pathname: "/reporting",
                     state: { _scrollToTop: true }
                 }}
-                primaryText={translate(`resources.incidents.name`, {
+                primaryText={translate(`resources.reporting.title`, {
                     smart_count: 2
                 })}
-                leftIcon={<cases.icon />}
-                dense={dense}
-            />
-
-            <MenuItemLink
-                to={{
-                    pathname: "/cases",
-                    state: { _scrollToTop: true }
-                }}
-                primaryText={translate(`resources.cases.name`, {
-                    smart_count: 2
-                })}
-                leftIcon={<cases.icon />}
-                dense={dense}
-            />
-
-            <MenuItemLink
-                to={{
-                    pathname: "/reviews",
-                    state: { _scrollToTop: true }
-                }}
-                primaryText={translate(`resources.reviews.name`, {
-                    smart_count: 2
-                })}
-                leftIcon={<reviews.icon />}
+                leftIcon={<dashboard.Icon />}
                 dense={dense}
             />
         </div>

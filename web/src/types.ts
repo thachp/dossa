@@ -1,6 +1,6 @@
 import { Identifier, Record, ReduxState } from "react-admin";
 
-export type ThemeName = 'light' | 'dark';
+export type ThemeName = "light" | "dark";
 
 export interface AppState extends ReduxState {
     theme: ThemeName;
@@ -10,16 +10,11 @@ export interface IncidentType extends Record {
     name: string;
 }
 
-export interface Product extends Record {
-    category_id: Identifier;
+export interface Incident extends Record {
+    incidentType: Identifier;
     description: string;
-    height: number;
-    image: string;
-    price: number;
-    reference: string;
-    stock: number;
-    thumbnail: string;
-    width: number;
+    createdBy: string;
+    tags: string[];
 }
 
 export interface Customer extends Record {
@@ -41,7 +36,7 @@ export interface Customer extends Record {
     total_spent: number;
 }
 
-export type OrderStatus = 'ordered' | 'delivered' | 'cancelled';
+export type OrderStatus = "ordered" | "delivered" | "cancelled";
 
 export interface Order extends Record {
     status: OrderStatus;
@@ -57,7 +52,7 @@ export interface BasketItem {
 
 export interface Invoice extends Record {}
 
-export type ReviewStatus = 'accepted' | 'pending' | 'rejected';
+export type ReviewStatus = "accepted" | "pending" | "rejected";
 
 export interface Review extends Record {
     date: Date;

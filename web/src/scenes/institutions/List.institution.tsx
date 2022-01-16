@@ -1,7 +1,6 @@
 import { Datagrid, List, ListProps, Pagination, PaginationProps, TextField } from "react-admin";
 
 import AsideInstitution from "./Aside.institution";
-import ShowInstitution from "./Show.institution";
 
 const InstitutionPagination = (props: PaginationProps) => (
     <Pagination rowsPerPageOptions={[10, 20, 50, 100]} {...props} />
@@ -18,7 +17,7 @@ const ListInstitution = (props: ListProps) => {
             perPage={20}
             aside={<AsideInstitution />}
         >
-            <Datagrid rowClick="show" expand={ShowInstitution}>
+            <Datagrid>
                 <TextField source="name" />
                 <TextField source="description" />
                 <TextField source="email" />

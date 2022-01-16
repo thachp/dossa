@@ -3,6 +3,9 @@ import Typography from "@material-ui/core/Typography";
 import { AppBar, useTranslate } from "react-admin";
 
 const useStyles = makeStyles({
+    root: {
+        border: "0px solid #FFFFFF"
+    },
     title: {
         flex: 1,
         textOverflow: "ellipsis",
@@ -17,10 +20,11 @@ const useStyles = makeStyles({
 const CustomAppBar = (props: any) => {
     const classes = useStyles();
     const t = useTranslate();
+
     return (
-        <AppBar {...props} elevation={1}>
+        <AppBar {...props} color="primary" elevation={0} className={classes.root}>
             <Typography variant="h6" color="inherit" className={classes.title} id="react-admin-title" />
-            <div>{t("app.title")} </div>
+            <div className="font-bold">{t("app.title")} </div>
             <span className={classes.spacer} />
         </AppBar>
     );
