@@ -60,6 +60,9 @@ const customEnglishMessages: TranslationMessages = {
         },
         reporting: {
             title: "Reporting",
+            incident_types_ratio: "Corruption in Percentage",
+            popular_hashtags: "Trending Hashtags",
+            popular_hashtags_description: "Popular hashtags in the last months",
             list_incident_types: "List of Corruptions"
         }
     }

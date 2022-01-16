@@ -3,6 +3,8 @@ import { useDataProvider, useGetList, useTranslate, useVersion } from "react-adm
 import { useHistory } from "react-router";
 
 import { Incident, Institution } from "../../types";
+import HashTagTreeMapChart from "./HashTagsTreeMapChart";
+import IncidentTypeChart from "./IncidentTypeChart";
 import IncidentTypes from "./List.incidenttype";
 
 interface State {
@@ -63,9 +65,9 @@ const Reporting = () => {
                 </div>
             </div>
             <div style={styles.rightCol}>
-                <h1>Testing</h1>
+                <IncidentTypeChart />
                 <hr />
-                <h1>Testing</h1>
+                <HashTagTreeMapChart />
             </div>
         </div>
     );
