@@ -3,8 +3,8 @@ import { useTranslate } from "react-admin";
 import { ResponsiveContainer, Treemap } from "recharts";
 
 /**
- * Mock data for the number of incidents per day
- * TODOs: Building an endpoint to get the number of incidents per month
+ * Mock data for hash tags treemap
+ * TODOs: replace with real data
  */
 const data = [
     {
@@ -20,10 +20,28 @@ const data = [
         ]
     },
     {
+        name: "Embezzlement",
+        size: 14593
+    },
+    {
+        name: "Extortion and solicitation",
+        children: [
+            { name: "extortion", size: 14593 },
+            { name: "solicitation", size: 14593 }
+        ]
+    },
+    {
         name: "Fees and commissions",
         children: [
             { name: "fees", size: 19382 },
             { name: "commissions", size: 11275 }
+        ]
+    },
+    {
+        name: "Gifts and hospitality",
+        children: [
+            { name: "gifts", size: 19382 },
+            { name: "hospitality", size: 19382 }
         ]
     },
     {
