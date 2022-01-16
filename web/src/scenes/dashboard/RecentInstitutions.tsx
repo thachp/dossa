@@ -1,38 +1,43 @@
 import { Box, Button, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AssignmentIcon from "@material-ui/icons/AssignmentOutlined";
-import CommentIcon from "@material-ui/icons/Comment";
+import BusinessIcon from "@material-ui/icons/Business";
 import { formatDistance } from "date-fns";
-import * as React from "react";
 import { RecordMap, useTranslate } from "react-admin";
 import { Link } from "react-router-dom";
 
 import CardWithIcon from "../../components/cards/CardWithIcon";
-import { Incident } from "../../types";
+import { Institution } from "../../types";
 
 interface Props {
-    incidents?: RecordMap<Incident>;
-    nb?: number;
+    institutions?: RecordMap<Institution>;
 }
 
-const RecentIncidents = ({ incidents: _incidents = {}, nb }: Props) => {
+const RecentInstitutions = ({ institutions: _institutions = {} }: Props) => {
     const classes = useStyles();
     const translate = useTranslate();
-    const incidents = Object.values(_incidents);
+    const institutions = Object.values(_institutions);
     return (
-        <CardWithIcon icon={CommentIcon} subtitle={translate("pos.dashboard.recent_incidents")}>
+        <CardWithIcon icon={BusinessIcon} subtitle={translate("pos.dashboard.recent_institutions")}>
             <List>
-                {incidents.map((record: any) => (
+                {institutions.map((record: any) => (
                     <ListItem key={record.id} button alignItems="flex-start">
                         <ListItemAvatar>
-                            <AssignmentIcon color="primary" fontSize="large" />
+                            <BusinessIcon color="primary" fontSize="large" />
                         </ListItemAvatar>
 
-                        <ListItemText
-                            secondary={record.description}
-                            className={classes.linkContent}
-                            style={{ paddingRight: 0 }}
-                        />
+                        <div>
+                            <ListItemText
+                                secondary={record.name}
+                                className={classes.linkContent}
+                                style={{ paddingRight: 0 }}
+                            />
+
+                            <ListItemText
+                                secondary={record.description}
+                                className={classes.linkContent}
+                                style={{ paddingRight: 0 }}
+                            />
+                        </div>
 
                         <ListItemText
                             secondary={formatDistance(new Date(record.createdAt), new Date(), { addSuffix: true })}
@@ -42,10 +47,9 @@ const RecentIncidents = ({ incidents: _incidents = {}, nb }: Props) => {
                     </ListItem>
                 ))}
             </List>
-            <Box flexGrow="1">&nbsp;</Box>
-            <Button className={classes.link} component={Link} to="/incidents" size="small" color="primary">
+            <Button className={classes.link} component={Link} to="/institutions" size="small" color="primary">
                 <Box p={1} className={classes.linkContent}>
-                    {translate("pos.dashboard.all_incidents")}
+                    {translate("pos.dashboard.all_institutions")}
                 </Box>
             </Button>
         </CardWithIcon>
@@ -73,4 +77,4 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default RecentIncidents;
+export default RecentInstitutions;

@@ -10,6 +10,7 @@ exports.up = async Parse => {
         .setCLP({
             get: { "role:activist": true, requiresAuthentication: true },
             find: { "role:analyst": true },
+            count: { "role:analyst": true },
             create: { "role:activist": true, "role:analyst": true, requiresAuthentication: true },
             update: {},
             delete: { "role:analyst": true },

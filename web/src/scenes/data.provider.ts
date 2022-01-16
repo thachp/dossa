@@ -190,6 +190,7 @@ export default async (type: string, resourceName: string, params: any) => {
     const resourcesProvider: RaFetchResources = {
         Institution,
         IncidentType,
+        Reporting: IncidentType,
         Incident
     };
 

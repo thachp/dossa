@@ -3,6 +3,10 @@ import * as React from "react";
 import { useTranslate } from "react-admin";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+/**
+ * Mock data for the number of incidents per day
+ * TODOs: Building an endpoint to get the number of incidents per month
+ */
 const data = [
     {
         name: "January",
@@ -41,12 +45,12 @@ const data = [
     },
     {
         name: "August",
-        institutions: 3490,
-        incidents: 4300
+        institutions: 1490,
+        incidents: 1300
     },
     {
         name: "September",
-        institutions: 3490,
+        institutions: 1490,
         incidents: 4300
     },
     {

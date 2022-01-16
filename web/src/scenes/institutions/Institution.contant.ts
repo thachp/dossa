@@ -7,6 +7,7 @@ const FRAGMENT_INSTITUTIONDETAIL = gql`
         description
         telephone
         email
+        createdAt
     }
 `;
 

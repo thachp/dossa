@@ -6,7 +6,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import inflection from "inflection";
 import { FilterList, FilterListItem, FilterLiveSearch, useGetList } from "react-admin";
 
-import { IncidentType } from "../reporting/incidentTypes.interface";
+import { IncidentType } from "../../types";
 
 const Card = withStyles((theme) => ({
     root: {

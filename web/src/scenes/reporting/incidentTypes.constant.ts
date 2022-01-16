@@ -3,7 +3,6 @@ import { gql } from "graphql-tag";
 const GET_LIST = gql`
     query getIncidentTypes {
         incidentTypes(order: name_ASC) {
-            count
             edges {
                 node {
                     id

@@ -1,5 +1,6 @@
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import { Admin, Resource, useTranslate } from "react-admin";
+import { Route } from "react-router";
 
 import englishMessages from "../common/i18n/en";
 import { darkTheme } from "../common/themes";
@@ -9,6 +10,7 @@ import Login from "./auth/Login.auth";
 import dashboard from "./dashboard";
 import dataProvider from "./data.provider";
 import institutions from "./institutions";
+import reporting from "./reporting/Reporting";
 
 const i18nProvider = polyglotI18nProvider((locale) => {
     if (locale === "fr") {
@@ -28,6 +30,7 @@ const App = () => {
             loginPage={Login}
             dashboard={dashboard.Dashboard}
             layout={Layout}
+            customRoutes={[<Route path="/reporting" component={reporting} />]}
             i18nProvider={i18nProvider}
             disableTelemetry
         >
