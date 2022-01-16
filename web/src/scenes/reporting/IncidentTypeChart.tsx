@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader } from "@material-ui/core";
-import * as React from "react";
 import { useTranslate } from "react-admin";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
@@ -19,7 +18,7 @@ const data = [
     { name: "Trading of information", value: 495 }
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#EE7B30", "#D55672", "#00FFC5", "#ADF5FF", "#481620"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {

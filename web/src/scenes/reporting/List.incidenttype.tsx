@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalanceOutlined";
-import * as React from "react";
 import { RecordMap, useTranslate } from "react-admin";
 
 import CardWithIcon from "../../components/cards/CardWithIcon";

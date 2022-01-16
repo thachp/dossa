@@ -1,16 +1,10 @@
-import { useLayoutEffect, useState } from "react";
-import { useDataProvider, useGetList, useTranslate, useVersion } from "react-admin";
-import { useHistory } from "react-router";
+import { useLayoutEffect } from "react";
+import { useGetList, useTranslate, useVersion } from "react-admin";
 
-import { Incident, Institution } from "../../types";
+import { Incident } from "../../types";
 import HashTagTreeMapChart from "./HashTagsTreeMapChart";
 import IncidentTypeChart from "./IncidentTypeChart";
 import IncidentTypes from "./List.incidenttype";
-
-interface State {
-    activistsCount: number;
-    institutionsCount: number;
-}
 
 const styles = {
     flex: { display: "flex" },
@@ -20,26 +14,13 @@ const styles = {
     singleCol: { marginTop: "1em", marginBottom: "1em" }
 };
 
-const Spacer = () => <span style={{ width: "1em" }} />;
-
 const Reporting = () => {
     const version = useVersion();
-    const dataProvider = useDataProvider();
     const translate = useTranslate();
-    const {
-        location: { pathname }
-    } = useHistory();
 
     const { data: incidents } = useGetList<Incident>(
         "incidentTypes",
         { page: 1, perPage: 8 },
-        { field: "createdAt", order: "DESC" },
-        {}
-    );
-
-    const { data: institutions } = useGetList<Institution>(
-        "institutions",
-        { page: 1, perPage: 5 },
         { field: "createdAt", order: "DESC" },
         {}
     );

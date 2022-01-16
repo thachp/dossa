@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AssignmentIcon from "@material-ui/icons/AssignmentOutlined";
 import CommentIcon from "@material-ui/icons/Comment";
 import { formatDistance } from "date-fns";
-import * as React from "react";
 import { RecordMap, useTranslate } from "react-admin";
 
 import CardWithIcon from "../../components/cards/CardWithIcon";
