@@ -16,6 +16,7 @@ exports.up = async Parse => {
                 "role:activist": true,
                 requiresAuthentication: true
             },
+            count: { "role:analyst": true },
             update: {
                 "role:analyst": true
             },
