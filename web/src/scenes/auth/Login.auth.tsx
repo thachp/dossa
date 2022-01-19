@@ -6,6 +6,7 @@ import { Notification, useLogin, useNotify, useTranslate } from "react-admin";
 import { Field, withTypes } from "react-final-form";
 import { QRCode } from "react-qrcode-logo";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import { lightTheme } from "../../common/themes";
 
@@ -98,6 +99,8 @@ const LoginAuth: React.FC<LoginAuthProps> = () => {
         return errors;
     };
 
+    const uuid = uuidv4();
+
     return (
         <Form
             onSubmit={handleSubmit}
@@ -114,7 +117,7 @@ const LoginAuth: React.FC<LoginAuthProps> = () => {
                             <Divider />
                             <div className={classes.hint}>{translate("auth.sign_in")}</div>
                             <div className={classes.avatar}>
-                                <QRCode size={100} value="/login?redirect=testingtesting" />
+                                <QRCode size={100} value={`exp://app.dossa.network/login?redirect=${uuid}`} />
                             </div>
                             <Divider />
                             <div className={classes.form}>
