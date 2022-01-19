@@ -30,6 +30,7 @@ const Dashboard = () => {
         activistsCount: 1125,
         institutionsCount: 326
     });
+
     const translate = useTranslate();
     const {
         location: { pathname }
@@ -52,10 +53,10 @@ const Dashboard = () => {
     useEffect(() => {
         // check for localstorage.. if doesn't exist, try refreshing the page
         const user = localStorage.getItem("auth-token");
-        if (!user && pathname === "/") {
+        if (!user) {
             window.location.reload();
         }
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const { activistsCount, institutionsCount } = state;
     return (
