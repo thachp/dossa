@@ -52,7 +52,7 @@ const Dashboard = () => {
     useEffect(() => {
         // check for localstorage.. if doesn't exist, try refreshing the page
         const user = localStorage.getItem("auth-token");
-        if (!user && pathname.includes("/dashboard")) {
+        if (!user && pathname === "/") {
             window.location.reload();
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
