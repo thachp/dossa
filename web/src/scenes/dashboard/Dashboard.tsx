@@ -1,7 +1,8 @@
 import Business from "@material-ui/icons/Business";
 import PeopleIcon from "@material-ui/icons/People";
 import { useEffect, useState } from "react";
-import { useGetList, useTranslate, useVersion } from "react-admin";
+import { useGetList, useTranslate } from "react-admin";
+import { useHistory } from "react-router";
 
 import CardWithIcon from "../../components/cards/CardWithIcon";
 import { Incident, Institution } from "../../types";
@@ -29,8 +30,10 @@ const Dashboard = () => {
         activistsCount: 1125,
         institutionsCount: 326
     });
-    const version = useVersion();
     const translate = useTranslate();
+    const {
+        location: { pathname }
+    } = useHistory();
 
     const { data: incidents } = useGetList<Incident>(
         "incidents",
@@ -46,7 +49,13 @@ const Dashboard = () => {
         {}
     );
 
-    useEffect(() => {}, [version]); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        // check for localstorage.. if doesn't exist, try refreshing the page
+        const user = localStorage.getItem("auth-token");
+        if (!user && pathname.includes("/dashboard")) {
+            window.location.reload();
+        }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const { activistsCount, institutionsCount } = state;
     return (
