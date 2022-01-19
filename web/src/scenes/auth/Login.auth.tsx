@@ -6,7 +6,6 @@ import { Notification, useLogin, useNotify, useTranslate } from "react-admin";
 import { Field, withTypes } from "react-final-form";
 import { QRCode } from "react-qrcode-logo";
 import { useLocation } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import { lightTheme } from "../../common/themes";
 
@@ -19,6 +18,8 @@ const useStyles = makeStyles((theme) => {
         },
         hint: {
             marginTop: "1em",
+            paddingLeft: "1em",
+            paddingRight: "1em",
             display: "flex",
             justifyContent: "center",
             color: theme.palette.grey[500]
@@ -99,8 +100,6 @@ const LoginAuth: React.FC<LoginAuthProps> = () => {
         return errors;
     };
 
-    const uuid = uuidv4();
-
     return (
         <Form
             onSubmit={handleSubmit}
@@ -111,13 +110,13 @@ const LoginAuth: React.FC<LoginAuthProps> = () => {
                         <Card>
                             <div className="bg-gray-300 py-2">
                                 <h1 className="text-2xl font-bold text-center text-gray-500">
-                                    {translate("auth.title")}
+                                    {translate("app.name")}
                                 </h1>
                             </div>
                             <Divider />
                             <div className={classes.hint}>{translate("auth.sign_in")}</div>
                             <div className={classes.avatar}>
-                                <QRCode size={100} value={`exp://app.dossa.network/login?redirect=${uuid}`} />
+                                <QRCode size={140} value={`exp://app.dossa.network`} />
                             </div>
                             <Divider />
                             <div className={classes.form}>

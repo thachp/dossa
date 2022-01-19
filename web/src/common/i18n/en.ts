@@ -4,6 +4,7 @@ import { TranslationMessages } from "react-admin";
 const customEnglishMessages: TranslationMessages = {
     ...englishMessages,
     app: {
+        name: "D O S S A",
         title: "Dossier Management System"
     },
 
@@ -11,7 +12,7 @@ const customEnglishMessages: TranslationMessages = {
         title: "Authentication",
         username: "Public Key",
         password: "Key Hash",
-        sign_in: "Scan to connect to the network",
+        sign_in: "Scan to submit incidents anonymously",
         connect: "Connect",
         or_continue: "... or continue with your public key"
     },
