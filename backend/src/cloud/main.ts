@@ -1,6 +1,6 @@
 import * as Parse from "parse/node";
 
-const { VPN_IPS = "::ffff:127.0.0.1", ENVIRONMENT } = process.env;
+const { VPN_IPS = "::ffff:127.0.0.1", VPN_ALLOW_ALL_IPS, ENVIRONMENT } = process.env;
 
 const schemas = ["Incident", "Asset", "Case", "IncidentType", "Institution", "Review", "Person"];
 
@@ -30,6 +30,10 @@ Parse.Cloud.define(
     "hasVPN",
     async (request: any) => {
         const hasVPNConnection = VPN_IPS.split(",").includes(request.ip);
+
+        if (VPN_ALLOW_ALL_IPS) {
+            return "ok";
+        }
 
         if (ENVIRONMENT === "development" || hasVPNConnection) {
             return "ok";
