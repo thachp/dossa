@@ -19,7 +19,7 @@ if (userObj && userObj.sessionToken) {
 export const gclient = new ApolloClient({
     cache: new InMemoryCache(),
     link: createUploadLink({
-        uri: "/graphql",
+        uri: "https://api.dossa.network/graphql",
         headers
     }) as any
 });
