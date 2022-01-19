@@ -4,6 +4,7 @@ import { DashboardMenuItem, MenuItemLink, MenuProps, ReduxState, useTranslate } 
 import { useSelector } from "react-redux";
 
 import dashboard from "../scenes/dashboard";
+import incidents from "../scenes/incidents";
 import institutions from "../scenes/institutions";
 import { AppState } from "../types";
 
@@ -31,6 +32,18 @@ const Menu = ({ dense = false }: MenuProps) => {
                     smart_count: 2
                 })}
                 leftIcon={<institutions.icon />}
+                dense={dense}
+            />
+
+            <MenuItemLink
+                to={{
+                    pathname: "/incidents",
+                    state: { _scrollToTop: true }
+                }}
+                primaryText={translate(`resources.incidents.name`, {
+                    smart_count: 2
+                })}
+                leftIcon={<incidents.icon />}
                 dense={dense}
             />
 

@@ -1,4 +1,4 @@
-import Icon from "@material-ui/icons/Business";
+import Icon from "@material-ui/icons/Comment";
 
 import IncidentList from "./List.incident";
 
