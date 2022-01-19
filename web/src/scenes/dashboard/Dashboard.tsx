@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     const { data: incidents } = useGetList<Incident>(
         "incidents",
-        { page: 1, perPage: 9 },
+        { page: 1, perPage: 8 },
         { field: "createdAt", order: "DESC" },
         {}
     );

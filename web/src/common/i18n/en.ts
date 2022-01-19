@@ -47,16 +47,19 @@ const customEnglishMessages: TranslationMessages = {
                 fifty_more: "50 & above cases",
                 cases_count: "Cases Count",
                 has_people: "Has people"
-            },
-            page: {
-                delete: "Delete Customer"
-            },
-            errors: {
-                password_mismatch: "The password confirmation is not the same as the password."
             }
         },
         incidents: {
-            name: "Incident |||| Incidents"
+            name: "Incident |||| Incidents",
+            incident_types: "Incident Type |||| Incident Types",
+            filters: {
+                incident_types: "Incident Type",
+                zero_10: "Up to 10 cases",
+                ten_25: "10 to 25 cases",
+                twentyfive_50: "25 to 50 cases",
+                fifty_more: "50 & above cases",
+                cases_count: "Cases Count"
+            }
         },
         reporting: {
             title: "Reporting",

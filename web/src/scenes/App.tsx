@@ -9,6 +9,7 @@ import authProvider from "./auth.provider";
 import Login from "./auth/Login.auth";
 import dashboard from "./dashboard";
 import dataProvider from "./data.provider";
+import incidents from "./incidents";
 import institutions from "./institutions";
 import reporting from "./reporting/Reporting";
 
@@ -36,7 +37,7 @@ const App = () => {
         >
             <Resource name="institutions" {...institutions} />
             <Resource name="incidentTypes" />
-            <Resource name="incidents" />
+            <Resource name="incidents" {...incidents} />
         </Admin>
     );
 };

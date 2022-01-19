@@ -16,7 +16,8 @@ exports.run = async Parse => {
     }
 
     var acl = new Parse.ACL();
-    acl.setPublicReadAccess(true);
+    acl.setRoleReadAccess("analyst", true);
+    acl.setRoleWriteAccess("analyst", true);
 
     // Get the incident types
     const qIncidentTypes = new Parse.Query(Parse.Object.extend(INCIDENT_TYPE));
@@ -29,9 +30,6 @@ exports.run = async Parse => {
     // Get users
     const qUsers = new Parse.Query(Parse.Object.extend(Parse.User));
     const users = await qUsers.find({ useMasterKey: true });
-
-    var acl = new Parse.ACL();
-    acl.setPublicReadAccess(true);
 
     // Incidents list
     const incidentsList = range(500).map(() => {

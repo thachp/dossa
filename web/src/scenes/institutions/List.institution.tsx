@@ -1,4 +1,4 @@
-import { Datagrid, List, ListProps, Pagination, PaginationProps, TextField } from "react-admin";
+import { Datagrid, EmailField, List, ListProps, Pagination, PaginationProps, TextField } from "react-admin";
 
 import AsideInstitution from "./Aside.institution";
 
@@ -20,7 +20,7 @@ const ListInstitution = (props: ListProps) => {
             <Datagrid>
                 <TextField source="name" />
                 <TextField source="description" />
-                <TextField source="email" />
+                <EmailField source="email" />
                 <TextField source="telephone" />
             </Datagrid>
         </List>

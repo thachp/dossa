@@ -4,7 +4,7 @@ import { DocumentNode } from "graphql";
 import { isNumber } from "lodash";
 import isEmpty from "lodash.isempty";
 import pluralize from "pluralize";
-import { GetListParams } from "react-admin";
+import { DeleteManyParams, GetListParams } from "react-admin";
 
 import gclient from "../common/graphql.config";
 import Incident from "./incidents/incident.contant";
@@ -137,7 +137,7 @@ export const buildGetListProvider = async (
     }
 
     const { data: dataResults } = await client.query({
-        query: GET_LIST as any,
+        query: GET_LIST,
         fetchPolicy: "network-only",
         variables: {
             where,
@@ -151,9 +151,46 @@ export const buildGetListProvider = async (
     return { total, data: edges.map((edge: { node: any }) => flat(edge.node)) };
 };
 
+export const buildDeleteManyProvider = async (
+    client: ApolloClient<any>,
+    resources: RaFetchResources,
+    resource: string,
+    params: DeleteManyParams
+) => {
+    const { ids } = params;
+
+    if (!resources[resource]) {
+        throw new Error(`Invalid resource :  ${resource}`);
+    }
+
+    const { DELETE } = resources[resource];
+
+    if (!DELETE) {
+        return;
+    }
+
+    for (const id of ids) {
+        await client.mutate({
+            mutation: DELETE,
+            variables: {
+                input: {
+                    id: id
+                }
+            }
+        });
+    }
+
+    return Promise.resolve({
+        data: ids
+    });
+};
+
 export const buildGraphQLProvider: any = (gclient: ApolloClient<any>, resourcesProvider: RaFetchResources) => {
     const getListProvider = async (resource: string, params: GetListParams) =>
         buildGetListProvider(gclient, resourcesProvider, resource, params);
+
+    const deleteManyProvider = async (resource: string, params: DeleteManyParams) =>
+        buildDeleteManyProvider(gclient, resourcesProvider, resource, params);
 
     return {
         GET_LIST: getListProvider,
@@ -179,9 +216,7 @@ export const buildGraphQLProvider: any = (gclient: ApolloClient<any>, resourcesP
         DELETE: async (resource: string, params: any) => {
             return Promise.resolve();
         },
-        DELETE_MANY: async (resource: string, params: any) => {
-            return Promise.resolve();
-        }
+        DELETE_MANY: deleteManyProvider
     };
 };
 

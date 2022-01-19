@@ -4,6 +4,10 @@ const FRAGMENT_INCIDENTDETAIL = gql`
     fragment IncidentDetail on Incident {
         id
         description
+        incidentType {
+            id
+            name
+        }
         createdAt
         createdBy {
             id
@@ -25,7 +29,18 @@ const GET_LIST = gql`
     }
 `;
 
+const DELETE = gql`
+    mutation deleteIncident($input: DeleteIncidentInput!) {
+        deleteIncident(input: $input) {
+            incident {
+                id
+            }
+        }
+    }
+`;
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    GET_LIST
+    GET_LIST,
+    DELETE
 };
